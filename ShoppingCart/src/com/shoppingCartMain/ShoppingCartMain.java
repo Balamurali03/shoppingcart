@@ -5,6 +5,8 @@ import java.util.Scanner;
 import com.shoppingCartMain.Controller.UserController;
 import com.shoppingCartMain.Entity.User;
 import com.shoppingCartMain.ModuleFunctions.LoginFunction;
+import com.shoppingCartMain.Service.InvoiceService;
+import com.shoppingCartMain.Service.InvoiceServiceImpl;
 
 public class ShoppingCartMain {
 
@@ -12,6 +14,7 @@ public class ShoppingCartMain {
 	public static void main(String[] args) {
 		
 		UserController controller = new UserController();
+		InvoiceService service = new InvoiceServiceImpl();
 		sc = new Scanner(System.in);
 		boolean value = true;
 		while (value == true) {
@@ -36,6 +39,10 @@ public class ShoppingCartMain {
 				break;
 			case "getalldata":
 				System.out.println(controller.view());
+				break;
+			case "invoice":
+				System.out.println("Enter user id");
+				System.out.println(service.generateInvoice(sc.nextInt()));
 				break;
 			case "logout":
 				System.out.println(controller.logout());

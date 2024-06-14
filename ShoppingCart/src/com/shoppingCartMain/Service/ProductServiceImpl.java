@@ -71,7 +71,7 @@ public class ProductServiceImpl implements ProductService{
 				product.setGender(resultSet.getString("gender"));
 				product.setAgegroup(resultSet.getString("agegroup"));
 				product.setColor(resultSet.getString("color"));
-				product.setPrice(resultSet.getInt("price"));
+				product.setPrice(resultSet.getDouble("price"));
 				product.setUser(resultSet.getInt("userid"));
 				
 				allProduct.add(product);

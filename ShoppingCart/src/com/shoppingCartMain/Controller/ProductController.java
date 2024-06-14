@@ -13,23 +13,23 @@ public class ProductController {
 	
 	public String addProduct() {
 		ProductList product = new ProductList();
-		System.out.println("Enter signup Details");
+		System.out.println("Enter product Details");
 		System.out.println("Enter Agegroup");
-		product.setAgegroup(sc.next());
+		product.setAgegroup(sc.nextLine());
 		System.out.println("Enter Brand");
-		product.setBrand(sc.next());
+		product.setBrand(sc.nextLine());
 		System.out.println("Enter Category");
-		product.setCategory(sc.next());
+		product.setCategory(sc.nextLine());
 		System.out.println("Enter Color");
-		product.setColor(sc.next());
+		product.setColor(sc.nextLine());
 		System.out.println("Enter Gender");
-		product.setGender(sc.next());
+		product.setGender(sc.nextLine());
 		System.out.println("Enter Name");
-		product.setName(sc.next());
+		product.setName(sc.nextLine());
 		System.out.println("Enter Price ");
 		product.setPrice(sc.nextDouble());
 		System.out.println("Enter Producttype ");
-		product.setProducttype(sc.next());
+		product.setProducttype(sc.nextLine());
 		System.out.println("Enter UserId ");
 		product.setUser(sc.nextInt());
 		if(service.addProduct(product)) {

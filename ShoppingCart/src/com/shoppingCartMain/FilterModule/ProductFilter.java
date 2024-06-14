@@ -5,15 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.shoppingCartMain.DataBase.DatabaseConnection;
 
 public class ProductFilter {
 	
-	public List<String> filterOnCategory(String category){
+	public Set<String> filterOnCategory(String category){
 		String query = "SELECT producttype FROM product WHERE category = ? ";
-		List<String> allCategory = new ArrayList<>();
+		Set<String> allCategory = new HashSet<>();
 		try (Connection connection = DatabaseConnection.getConnection()) {
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, category);
@@ -23,6 +25,7 @@ public class ProductFilter {
 				allCategory.add(resultSet.getString("producttype"));
 			}
 			
+			
 		} catch (SQLException e) {
 
 			System.out.println("SQLException: " + e.getMessage());
@@ -30,9 +33,9 @@ public class ProductFilter {
 		
 		return allCategory;
 	}
-    public List<String> filterOnProductType(String productType){
+    public Set<String> filterOnProductType(String productType){
     	String query = "SELECT brand FROM product WHERE producttype = ? ";
-		List<String> allproductType = new ArrayList<>();
+		Set<String> allproductType = new HashSet<>();
 		try (Connection connection = DatabaseConnection.getConnection()) {
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, productType);
@@ -58,7 +61,8 @@ public class ProductFilter {
 			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
-				allBrand.add("productid : "+resultSet.getInt("productid")+" => name : "+resultSet.getString("name"));
+				allBrand.add("productid : "+resultSet.getInt("productid")+" => name : "+resultSet.getString("name")
+				+" => price : "+resultSet.getDouble("price"));
 			}
 			
 		} catch (SQLException e) {
@@ -68,9 +72,9 @@ public class ProductFilter {
 		
 		return allBrand;
 }
-    public List<String> filterAllCategory(){
+    public Set<String> filterAllCategory(){
 		String query = "SELECT category FROM product";
-		List<String> allTypeCategory = new ArrayList<>();
+		Set<String> allTypeCategory = new HashSet<>();
 		try (Connection connection = DatabaseConnection.getConnection()) {
 			PreparedStatement statement = connection.prepareStatement(query);
 			ResultSet resultSet = statement.executeQuery();
